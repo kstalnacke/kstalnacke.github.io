@@ -8,15 +8,16 @@ canvas {
 
 
 :root {
+  transition: all 0.1s ease;
+  background: white;
   --spacing: 350px;
   font-family: monospace;
   font-weight: 400;
   font-style: normal;
-  font-size: 150%;
+  font-size: 1em;
 }
 
-
-main {
+  main{
   width: 100vw;
   color: rgb(22, 22, 22);
   z-index: 99;
@@ -26,56 +27,33 @@ main {
   padding: 0px 0px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-}
+  }
 
-h1, h2, h3, h4, h5, blockquote {
-  font-family: monospace;
-  font-weight: 700;
-  font-style: normal;
-}
+  h1, h2, h3, h4, h5, blockquote {
+    font-family: monospace;
+    font-weight: 700;
+    font-style: normal;
+  }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-
-
-  header {
-    background: var(--dark-bg);
-    grid-column: 2 / span 5;
-    font-size: 2.5rem;
+  header{
+    grid-column: 2 / span 6;
+    font-size: 4em;
     padding: 2rem;
-    margin-bottom: var(--spacing);
   }
 
   section {
-    grid-column: 2 / 9;
-    padding: 1rem;
+    grid-column: 2 / span 4;
+    padding: 2rem;
     background: var(--dark-bg);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.5;
-    margin-bottom: var(--spacing);
   }
 
-  blockquote {
-    margin: 0;
-    padding: 0;
-    font-size: 4rem;
-    display: inline;
-    line-height: 1;
-    grid-column: 2 / span 9;
-    margin-bottom: var(--spacing);
+  .offset{
+    grid-column: 7 / 12;
   }
 
-  .left {
-    grid-column: 6 / 12;
-  }
-  .content {
-    max-width: 500px;
-    margin: auto;
-  }
+
   .switch {
     position: relative;
     display: inline-block;
@@ -85,9 +63,7 @@ canvas {
   
 
   .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+    display: none;
   }
   
 
@@ -105,7 +81,13 @@ canvas {
   
   .slider:before {
     position: absolute;
-    content: "";
+
+    font: var(--fa-font-solid);
+    content: "\f185";
+    color: rgb(131, 131, 131);
+    text-align: center;
+    line-height: 1.7;
+
     height: 26px;
     width: 26px;
     left: 4px;
@@ -116,13 +98,20 @@ canvas {
   }
   
   input:checked + .slider {
-    background-color: #450a9c;
+    background-color: #6acf88;
   }
   
   input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+  
+    color: rgb(131, 131, 131);
+    font: var(--fa-font-solid);
+    content: "\f186";
+    text-align: center;
+    line-height: 1.7;
+    
   }
   
   .slider.round {
@@ -132,29 +121,62 @@ canvas {
   .slider.round:before {
     border-radius: 50%;
   }
-  .button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    position: fixed;
-    border-radius: 8px;
-    right: 5px;
-    bottom: 5px;
-  }
+
   .fa-linkedin {
-  color:black;
+  color: rgb(22, 22, 22);
   position: fixed;
   right: 55px;
   bottom: 20px;
   }
   .fa-envelope {
-  color:black;
+  color:rgb(22, 22, 22);
   position: fixed;
   right: 10px;
   bottom: 20px;
   }
+
+  .fa-envelope:hover{
+    color:#6acf88 !important;
+    -webkit-animation: bounce 1s infinite;
+ }
+ .fa-linkedin:hover{
+    color:#6acf88 !important;
+    -webkit-animation: bounce 1s infinite;
+ }
+
+ @-webkit-keyframes bounce {
+  0%,  
+  100% {
+     -webkit-transform: translateY(0);
+  } 
+  50% {
+      -webkit-transform: translateY(-10px);
+  }
+}
+@-moz-keyframes bounce {
+  0%, 
+  100% {
+     -moz-transform: translateY(0);
+  }
+  50% {
+     -moz-transform: translateY(-10px);
+  }
+}
+@-o-keyframes bounce {
+  0%,
+  100% {
+     -o-transform: translateY(0);
+  }
+  50% {
+     -o-transform: translateY(-10px);
+  }
+}
+@keyframes bounce {
+  0%,  
+  100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
