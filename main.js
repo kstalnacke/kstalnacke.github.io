@@ -79,6 +79,16 @@ window.addEventListener('resize', function()
 	camera.updateProjectionMatrix();
 	} );
 
+document.addEventListener("touchmove", ScrollStart, false);
+
+function ScrollStart() {
+  var width = window.innerWidth;
+	var height = window.innerHeight;
+	renderer.setSize( width, height );
+	camera.aspect = width / height;
+	camera.updateProjectionMatrix();
+}
+
 function moveCamera(){
   const t = document.body.getBoundingClientRect().top;
   camera.position.z = t * -0.01;
