@@ -17,7 +17,16 @@ const geometry = new THREE.TorusKnotGeometry( 8, 3, 96, 32 );
 const material = new THREE.MeshPhongMaterial({ color: 0xf1fa70});
 const torusKnot = new THREE.Mesh( geometry, material );
 
-scene.add(torusKnot)
+scene.add(torusKnot);
+
+const videoTexture = new THREE.VideoTexture(video);
+const videoMaterial =  new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.FrontSide, toneMapped: false} );
+
+const screen = new THREE.BoxGeometry(1, 1, 1);
+const videoScreen = new THREE.Mesh(screen, videoMaterial);
+videoScreen.position.set(0, 0, -5);
+scene.add(videoScreen);
+
 
 const ambientLight = new THREE.AmbientLight(0xffffff)
 const pointLight = new THREE.PointLight(0xffffff)
@@ -31,6 +40,7 @@ function animate(){
   requestAnimationFrame(animate);
   torusKnot.rotation.x += 0.0002;
   torusKnot.rotation.y += 0.0002;
+  videoScreen.rotation.x += 0.002;
   renderer.render(scene, camera);
 }
 animate()
@@ -38,8 +48,6 @@ animate()
 function darkMode(){
   document.getElementById("text").style.color = "white";
   document.documentElement.style.setProperty("background", "rgb(22,22,22)");
-  document.querySelector('.fa-linkedin').style.color = "white";
-  document.querySelector('.fa-envelope').style.color = "white";
   torusKnot.material.color.setHex(0x3e167a);
   pointLight.color.set(0xda45ff);
   ambientLight.color.set(0xda45ff);
@@ -48,8 +56,6 @@ function darkMode(){
 function lightMode(){
   document.getElementById("text").style.color = "rgb(22,22,22)";
   document.documentElement.style.setProperty("background", "white");
-  document.querySelector('.fa-linkedin').style.color = "rgb(22,22,22)";
-  document.querySelector('.fa-envelope').style.color = "rgb(22,22,22)";
   torusKnot.material.color.setHex(0xf1fa70);
   pointLight.color.set(0xffffff);
   ambientLight.color.set(0xffffff);
@@ -79,15 +85,6 @@ window.addEventListener('resize', function()
 	camera.updateProjectionMatrix();
 	} );
 
-document.addEventListener("touchmove", ScrollStart, false);
-
-function ScrollStart() {
-  var width = window.innerWidth;
-	var height = window.innerHeight;
-	renderer.setSize( width, height );
-	camera.aspect = width / height;
-	camera.updateProjectionMatrix();
-}
 
 function moveCamera(){
   const t = document.body.getBoundingClientRect().top;

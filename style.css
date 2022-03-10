@@ -6,9 +6,12 @@ canvas {
   left: 0;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 :root {
-  transition: all 0.1s ease;
   background: white;
   --spacing: 350px;
   font-family: monospace;
@@ -23,11 +26,50 @@ canvas {
   z-index: 99;
   position: absolute;
   width: 100%;
-  margin: 0px auto;
-  padding: 0px 0px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1000px));
+  margin-bottom: var(--spacing);
   }
+
+  ul.topnav {
+    grid-column: 1 / span 3;
+    margin: -10px;
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(53,53,53,0.8);
+  }
+  
+  ul.topnav li {
+    float: left;
+    border-right: 2px solid rgba(53,53,53,0.25);
+  }
+  
+  ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  ul.topnav li a:hover:not(.active) {background-color: rgba(42,42,42,0.25);}
+  
+  ul.topnav li a.active {background-color: #04AA6D;}
+  
+  ul.topnav li.right {float: right;}
+  
+  @media screen and (max-width: 768px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+    ul.topnav li {
+      border-right: none;
+      border-top: 2px solid rgba(53,53,53,0.25)}
+    ul.topnav {
+      background-color: rgba(53,53,53,0.8);
+    }
+    }
+  
 
   h1, h2, h3, h4, h5, blockquote {
     font-family: monospace;
@@ -41,20 +83,41 @@ canvas {
     padding: 2rem;
   }
 
+  @media screen and (max-width: 768px) {
+    header{
+      margin-top: 5rem;
+    }
+  }
+
   section {
-    grid-column: 1 / span 2;
+    grid-column: 1;
     padding: 2rem;
     font-size: 1.5rem;
     line-height: 1.5;
   }
 
-  .offset{
-    grid-column: 7 / 12;
+  blockquote{
+    font-size: 4rem;
   }
+
+  .offset{
+    grid-column: 2;
+    
+  }
+
+  @media screen and (max-width: 1270px) {
+    .offset{
+      grid-column: 1;
+    }
+    
+    
+    }
 
 
   .switch {
-    position: relative;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -97,7 +160,8 @@ canvas {
   }
   
   input:checked + .slider {
-    background-color: #6acf88;
+    background-color: #ccc
+    ;
   }
   
   input:checked + .slider:before {
@@ -121,61 +185,4 @@ canvas {
     border-radius: 50%;
   }
 
-  .fa-linkedin {
-  color: rgb(22, 22, 22);
-  position: fixed;
-  right: 55px;
-  top: 20px;
-  }
-  .fa-envelope {
-  color:rgb(22, 22, 22);
-  position: fixed;
-  right: 10px;
-  top: 20px;
-  }
 
-  .fa-envelope:hover{
-    color:#6acf88 !important;
-    -webkit-animation: bounce 1s infinite;
- }
- .fa-linkedin:hover{
-    color:#6acf88 !important;
-    -webkit-animation: bounce 1s infinite;
- }
-
- @-webkit-keyframes bounce {
-  0%,  
-  100% {
-     -webkit-transform: translateY(0);
-  } 
-  50% {
-      -webkit-transform: translateY(10px);
-  }
-}
-@-moz-keyframes bounce {
-  0%, 
-  100% {
-     -moz-transform: translateY(0);
-  }
-  50% {
-     -moz-transform: translateY(10px);
-  }
-}
-@-o-keyframes bounce {
-  0%,
-  100% {
-     -o-transform: translateY(0);
-  }
-  50% {
-     -o-transform: translateY(10px);
-  }
-}
-@keyframes bounce {
-  0%,  
-  100% {
-      transform: translateY(0);
-  }
-  50% {
-      transform: translateY(10px);
-  }
-}
