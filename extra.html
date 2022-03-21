@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <script src="https://kit.fontawesome.com/05b3fde03c.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Kaleb Stålnacke</title>
+</head>
+
+<body>
+  <canvas id="bg"></canvas>
+  <main id="text">
+
+    <ul class="topnav">
+      <li><a href="index.html">Hem</a></li>
+      <li><a class="active" href="extra.html">Extra</a></li>
+      <li><a href="https://www.linkedin.com/in/kaleb-st%C3%A5lnacke-5b9632146/"><i class="fa-brands fa-linkedin fa-xl"></i></a></li>
+      <li><a href="mailto:kaleb.stalnacke@gmail.com"> <i class="fa-solid fa-envelope fa-xl"></i></a></li>
+    </ul>
+
+    <header>
+      <h1 id="head">📍Topplista | Jobbresor</h1>
+    </header>
+
+    <label class="switch">
+      <input type="checkbox" id="switch">
+      <span class="slider round"></span>
+    </label>
+
+    <button class="open-button" id="openbutton"><i class="fa-solid fa-envelope"></i></button>
+
+    <div class="form-popup" id="form">
+      <form class="form" method="get">
+
+        <div class="form-control">
+          <label for="fname"><strong>Förnamn</strong></label>
+          <input type="text" placeholder="" id="fname">
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error msg</small>
+        </div>
+
+        <div class="form-control">
+          <label for="lname"><strong>Efternamn</strong></label>
+          <input type="text" placeholder="" id="lname">
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small>Error msg</small>
+        </div>
+
+        <div class="form-control">
+          <label for="email"><strong>E-post</strong></label>
+          <input type="email" placeholder="exempel@mail.se" required id="email">
+        </div>
+
+        <div class="form-control">
+          <label for="zip"><strong>Postnummer</strong></label>
+          <input type="text" minlength="5" maxlength="6" placeholder="918 32" required id="zip">
+        </div>
+
+        
+
+        <button class="btn cancel" id="closebutton">Avbryt</button>
+        <button class="btn">Submit</button>
+        
+      </form>
+    </div>
+
+    <section class="offset">
+      <h1 style="width: 480px;">Hör min motivering till varför just dessa platser hör hemma på topplistan!</h1>
+      <video src="video.mp4" controls></video>
+    </section>
+
+    <section>
+
+    <div class="flip-card" id="1">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color: #FFD700;">
+          <p>1</p>
+        </div>
+        <div class="flip-card-back">
+          <img src="images/savar.jpg">
+          <p class="imgtext">Sävar</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="flip-card" id="2">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color: 	#C0C0C0;">
+          <p>2</p>
+        </div>
+        <div class="flip-card-back">
+          <img src="images/tarnby.jpg">
+          <p class="imgtext">Tärnaby</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="flip-card" id="3">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="background-color: #cd7f32;">
+          <p>3</p>
+        </div>
+        <div class="flip-card-back">
+          <img src="images/kasamark.jpg">
+          <p class="imgtext">Kasamark</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+    
+
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

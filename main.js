@@ -19,14 +19,6 @@ const torusKnot = new THREE.Mesh( geometry, material );
 
 scene.add(torusKnot);
 
-const videoTexture = new THREE.VideoTexture(video);
-const videoMaterial =  new THREE.MeshBasicMaterial( {map: videoTexture, side: THREE.FrontSide, toneMapped: false} );
-
-const screen = new THREE.BoxGeometry(1, 1, 1);
-const videoScreen = new THREE.Mesh(screen, videoMaterial);
-videoScreen.position.set(0, 0, -5);
-scene.add(videoScreen);
-
 
 const ambientLight = new THREE.AmbientLight(0xffffff)
 const pointLight = new THREE.PointLight(0xffffff)
@@ -40,10 +32,11 @@ function animate(){
   requestAnimationFrame(animate);
   torusKnot.rotation.x += 0.0002;
   torusKnot.rotation.y += 0.0002;
-  videoScreen.rotation.x += 0.002;
   renderer.render(scene, camera);
 }
 animate()
+
+
 
 function darkMode(){
   document.getElementById("text").style.color = "white";
@@ -51,6 +44,7 @@ function darkMode(){
   torusKnot.material.color.setHex(0x3e167a);
   pointLight.color.set(0xda45ff);
   ambientLight.color.set(0xda45ff);
+  document.getElementById("form").style.color = "rgb(22, 22, 22)";
 }
 
 function lightMode(){
@@ -94,3 +88,79 @@ function moveCamera(){
   
 }
 document.body.onscroll = moveCamera
+
+
+document.getElementById("openbutton").addEventListener("click", openForm);
+
+document.getElementById("closebutton").addEventListener("click", closeForm);
+
+
+function openForm() {
+  document.getElementById("form").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("form").style.display = "none";
+}
+const form = document.getElementById('form');
+const fname = document.getElementById('fname');
+const lname = document.getElementById('lname');
+
+
+form.addEventListener('submit', e => {
+	e.preventDefault();
+	
+	checkInputs();
+});
+
+function checkInputs() {
+	const fnameValue = fname.value.trim();
+	const lnameValue = lname.value.trim();
+  var fnameCorr = false;
+  var lnameCorr = false;
+	
+	if(fnameValue === '') {
+		setErrorFor(fname, 'Förnamn kan inte lämnas tomt');
+	} else {
+		setSuccessFor(fname);
+    fnameCorr = true;
+
+	}
+	
+	if(lnameValue === '') {
+		setErrorFor(lname, 'Efternamn kan inte lämnas tomt');
+	} else {
+		setSuccessFor(lname);
+    lnameCorr = true;
+	}
+
+  if (fnameCorr && lnameCorr){
+    const head = document.getElementById('head');
+    head.innerText = 'Tack för din prenumeration' + ' ' + fnameValue + '!';
+    closeForm();
+  }
+
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
+}
+
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'form-control success';
+}
+
+}
+const flipcards = document.querySelectorAll('.flip-card');
+
+flipcards.forEach(flipcard => {
+  flipcard.addEventListener('click',  flipCard);
+});
+
+function flipCard() {
+  var x = document.getElementById(this.id);
+  x.classList.toggle("hover");
+
+}
